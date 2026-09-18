@@ -18,7 +18,8 @@ body {
 }
 
 button,
-input {
+input,
+select {
   font: inherit;
 }
 
@@ -130,6 +131,19 @@ button {
   background: color-mix(in srgb, var(--primary) 8%, #ffffff);
 }
 
+.chips button.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+}
+
+.filter-hint {
+  margin: 14px 0 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
 .heading {
   display: flex;
   align-items: start;
@@ -165,12 +179,38 @@ label span {
   font-size: 13px;
 }
 
-input {
+input,
+select {
   width: 100%;
   min-height: 42px;
   border-radius: 7px;
   border: 1px solid var(--border);
   padding: 0 12px;
+  background: #ffffff;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.heading-side {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.blocked-count {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.records-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 18px;
+  align-items: start;
 }
 
 .records {
@@ -187,6 +227,12 @@ input {
   border: 1px solid var(--border);
   border-radius: 8px;
   background: #fbfdff;
+  cursor: pointer;
+}
+
+.records article.selected {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary) 30%, transparent);
 }
 
 .records b {
@@ -208,15 +254,128 @@ input {
   line-height: 1.6;
 }
 
+.badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+.state-open {
+  background: color-mix(in srgb, var(--primary) 12%, #ffffff);
+  color: var(--primary);
+}
+
+.state-submitted {
+  background: color-mix(in srgb, var(--secondary) 16%, #ffffff);
+  color: var(--secondary);
+}
+
+.state-overdue {
+  background: color-mix(in srgb, var(--accent) 12%, #ffffff);
+  color: var(--accent);
+}
+
+.state-invalid {
+  background: #e2e8f0;
+  color: #475569;
+}
+
+.state-identified {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.detail-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fbfdff;
+  padding: 18px;
+  position: sticky;
+  top: 16px;
+}
+
+.detail-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.detail-head h3 {
+  margin: 0;
+}
+
+.detail-card dl {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0;
+}
+
+.detail-card dl div {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 10px;
+}
+
+.detail-card dt {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.detail-card dd {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.deadline {
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  border-radius: 7px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.actions button {
+  flex: 1;
+  padding: 0 10px;
+}
+
+.hint {
+  display: block;
+  margin-top: 10px;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.placeholder {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.7;
+}
+
 @media (max-width: 860px) {
   .metrics,
   .workspace,
-  .field-grid {
+  .field-grid,
+  .records-layout {
     grid-template-columns: 1fr;
   }
 
   .hero {
     min-height: 210px;
     padding: 24px;
+  }
+
+  .detail-card {
+    position: static;
   }
 }
